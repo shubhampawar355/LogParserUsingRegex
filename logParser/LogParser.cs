@@ -28,6 +28,7 @@
                     }
                 } else {
                     Console.WriteLine ("Source directory = " + userInput.Source + " is Invalid!! Please enter valid source directory.");
+                    return;
                 }
                 Console.WriteLine ("Log Parsing done Successfully.Skipped Lines: " + SkippedLinesCount);
             } else {
@@ -60,11 +61,11 @@
 
 
         private static void PrintHelp () {
-            Console.WriteLine ("\nUse case 1) logParser --log-dir <dir> --log-level <level> --csv <out>" +
-                " \n--log-dir   ==> <Directory to parse recursively for .log files >" +
-                "\n    --csv   ==> <Out file-path (absolute/relative)>" +
+            Console.WriteLine ("\nUse case 1) logParser --log-dir <dir> --log-level <level> --csv <out>\n" +
+                "\n  --log-dir ==> <Directory to parse recursively for .log files >" +
+                "\n      --csv ==> <Out file-path (absolute/relative)>" +
                 "\n--log-level ==> <INFO|WARN|DEBUG|TRACE|ERROR|EVENT> default will be all levels or you can give more than one by giving space between  \n" +
-                "\nUse case 2) logParser <Source dir> <level> <Destination dir>\n" +
+                "\nUse case 2) logParser <Source dir> <levels> <Destination dir>\n" +
                 "\nUse case 3) logParser <Source dir> <Destination dir>\n  In this case all levels will be considered\n");
         }
     }

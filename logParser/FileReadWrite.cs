@@ -19,8 +19,8 @@
             Directory.CreateDirectory (Path.GetDirectoryName (this.Destination));
         }
 
-        public void AddHeaderToDestination (char delim) {
-            string str = "" + delim + " No " + delim + " Level " + delim + " Date " + delim + " Time " + delim + " Text " + delim + "\n";
+        public void AddHeaderToDestination (char delime) {
+            string str = "" + delime + " No " + delime + " Level " + delime + " Date " + delime + " Time " + delime + " Text " + delime + "\n";
             if (!File.Exists (Destination))
                 File.Create (Destination).Close ();
             if (new FileInfo (Destination).Length == 0)
