@@ -13,6 +13,13 @@
             File.Delete (@"..\..\..\SampleInputOutput\Output\checkHeader.csv");
         }
 
+        [Fact]
+        public void TestAddHeaderToDestinationWithChangeInDelimeter () {
+            new FileReadWrite (@"..\..\..\SampleInputOutput\Input\logs", @"..\..\..\SampleInputOutput\Output\checkHeader.csv").AddHeaderToDestination ('#');
+            Assert.True (File.ReadAllLines (@"..\..\..\SampleInputOutput\Output\checkHeader.csv") [0].Equals ("# No # Level # Date # Time # Text #"));
+            File.Delete (@"..\..\..\SampleInputOutput\Output\checkHeader.csv");
+        }
+
         [Theory, InlineData (new object[] { @"..\..\..\SampleInputOutput\Output\" }), InlineData (new object[] { @"..\..\..\SampleInputOutput\Output\log" }), InlineData (new object[] { @"..\..\..\SampleInputOutput\Output\log.csv" })]
         public void TestDestinationPathProcessedCorrectly (string dest) {
             Assert.True (@"..\..\..\SampleInputOutput\Output\log.csv".Equals (new FileReadWrite (@"..\..\..\SampleInputOutput\Input\logs", dest).Destination));

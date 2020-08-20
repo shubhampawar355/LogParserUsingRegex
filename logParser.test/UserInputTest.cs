@@ -36,7 +36,7 @@
         }
 
         [Fact]
-        public void TestUserInputIngnoreWrongLevels()
+        public void TestUserInputIgnoreWrongLevels()
         {
             Assert.False(UserInput.GetInstance(this.ArgsArray).UserGivenLevels.Contains("something"));
         }
