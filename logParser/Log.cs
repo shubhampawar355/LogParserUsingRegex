@@ -6,12 +6,18 @@
 
     public class Log
     {
-        public int LogId;
-        public DateTime DateTime;
-        public string Level;
-        public string Info;
+        private int LogId;
+        private DateTime DateTime;
+        private string Level;
+        private string Info;
         public static char Delimeter = '|';
-        public static Regex LogFormat;
+        private static Regex _LogFormat;
+        public static Regex LogFormat
+        {
+            get { return _LogFormat; }
+          private  set { _LogFormat = value; }
+        }
+        
 
         public Log(int logId, string dateStr, string timeStr, string level, string info)
         {
@@ -26,7 +32,7 @@
         }
 
         public static bool IsLog(string line){
-            return LogFormat.IsMatch(line);
+            return _LogFormat.IsMatch(line);
         }
 
         public static void SetLogFormat(HashSet<string> userGivenLevels)
@@ -36,7 +42,7 @@
             {
                 str = str + level + "|";
             }
-            LogFormat = new Regex(str.Remove(str.Length - 1, 1) + ")", RegexOptions.IgnoreCase);
+            _LogFormat = new Regex(str.Remove(str.Length - 1, 1) + ")", RegexOptions.IgnoreCase);
         }
 
         public override string ToString()

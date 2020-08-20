@@ -1,11 +1,30 @@
 ﻿namespace logParser {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
+    using System;
 
     public class UserInput {
-        public string Source;
-        public string Destination;
-        public HashSet<string> UserGivenLevels = new HashSet<string> ();
+        private string _Source;
+        public string Source
+        {
+            get { return _Source; }
+           private set { _Source = value; }
+        }
+        
+        private string _Destination;
+        public string Destination
+        {
+            get { return _Destination; }
+            private set { _Destination = value; }
+        }
+        
+        private HashSet<string> _UserGivenLevels = new HashSet<string> ();
+        public HashSet<string> UserGivenLevels
+        {
+            get { return _UserGivenLevels; }
+            private set { _UserGivenLevels = value; }
+        }
+        
         private static UserInput Singleton = null;
 
         private UserInput (string[] args) {
@@ -64,6 +83,10 @@
 
         public static UserInput GetInstance (string[] args) {
             return ((Singleton != null) ? Singleton : new UserInput (args));
+        }
+
+        public static UserInput GetInstance () {
+            return Singleton;
         }
     }
 }

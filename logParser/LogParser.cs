@@ -5,10 +5,10 @@
     using System;
 
     public class LogParser {
-        public static UserInput userInput;
-        public static FileReadWrite FileHandler;
-        public static int lastLogIdFromOldCSVFile;
-        public static int SkippedLinesCount=0;
+        private static UserInput userInput;
+        private static FileReadWrite FileHandler;
+        private static int lastLogIdFromOldCSVFile;
+        private static int SkippedLinesCount=0;
     
         private static void Main (string[] args) {
             if (args.Length >= 2) {
@@ -61,11 +61,11 @@
 
 
         private static void PrintHelp () {
-            Console.WriteLine ("\nUse case 1) logParser --log-dir <dir> --log-level <level> --csv <out>\n" +
+            Console.WriteLine ("\nUse case 1) logParser --log-dir <dir> --log-level <level> --csv <out>" +
                 "\n  --log-dir ==> <Directory to parse recursively for .log files >" +
                 "\n      --csv ==> <Out file-path (absolute/relative)>" +
                 "\n--log-level ==> <INFO|WARN|DEBUG|TRACE|ERROR|EVENT> default will be all levels or you can give more than one by giving space between  \n" +
-                "\nUse case 2) logParser <Source dir> <levels> <Destination dir>\n" +
+                "\nUse case 2) logParser <Source dir> <level> <Destination dir>\n" +
                 "\nUse case 3) logParser <Source dir> <Destination dir>\n  In this case all levels will be considered\n");
         }
     }
