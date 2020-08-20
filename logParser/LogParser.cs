@@ -14,7 +14,7 @@
             if (args.Length >= 2) {
                 userInput = UserInput.GetInstance (args);
                 FileHandler = new FileReadWrite (userInput.Source, userInput.Destination);
-                FileHandler.AddHeaderToDestination ('|');
+                FileHandler.AddHeaderToDestination (userInput.Delemeter);
                 if (FileHandler.IsSourceValid ()) {
                     string[] allLogFiles = FileHandler.GetAllLogFiles ();
                     if (allLogFiles.Length != 0) {
@@ -41,7 +41,7 @@
             List<string> lines = FileHandler.ReadAllLines (file);
             List<string> logsToWrite = new List<string> ();
             Log.SetLogFormat (userInput.UserGivenLevels);
-            Log.Delimeter = '|';
+            Log.Delimeter = userInput.Delemeter;
             string tabVal = new string (' ', 1);
             foreach (string line in lines) {
                 string formattedLine = line.Replace ("\t", tabVal);
@@ -66,7 +66,8 @@
                 "\n      --csv ==> <Out file-path (absolute/relative)>" +
                 "\n--log-level ==> <INFO|WARN|DEBUG|TRACE|ERROR|EVENT> default will be all levels or you can give more than one by giving space between  \n" +
                 "\nUse case 2) logParser <Source dir> <level> <Destination dir>\n" +
-                "\nUse case 3) logParser <Source dir> <Destination dir>\n  In this case all levels will be considered\n");
+                "\nUse case 3) logParser <Source dir> <Destination dir>\n  In this case all levels will be considered\n"+
+                "\n Use --delime label to set Delemeter");
         }
     }
 }

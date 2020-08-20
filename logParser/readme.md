@@ -29,3 +29,7 @@ Additional features :
         2> E:\sample\<name>     => E:\sample\<name>.csv
         3> E:\sample\           => E:\sample\log.csv
         4>  E:\sample           => E:\sample.csv(file will be created with folder name.csv in E:\ drive directly)
+
+11) User can provide separator using --delime label with cmd arguments.
+        eg. dotnet run  --log-dir <source> Level --csv <destination> --delime <separator>
+        

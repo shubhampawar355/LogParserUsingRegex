@@ -20,6 +20,8 @@
         }
 
         public void AddHeaderToDestination (char delime) {
+            if(delime=='\0')
+                delime='|';
             string str = "" + delime + " No " + delime + " Level " + delime + " Date " + delime + " Time " + delime + " Text " + delime + "\n";
             if (!File.Exists (Destination))
                 File.Create (Destination).Close ();

@@ -24,6 +24,12 @@
             get { return _UserGivenLevels; }
             private set { _UserGivenLevels = value; }
         }
+        private char _Delimeter='\0';
+        public char Delemeter
+        {
+            get { return _Delimeter; }
+           private set { _Delimeter = value; }
+        }
         
         private static UserInput Singleton = null;
 
@@ -43,6 +49,10 @@
                         args[i + 1] = null;
                     } else if (args[i].Equals ("--csv")) {
                         this.Destination = args[i + 1];
+                        args[i] = null;
+                        args[i + 1] = null;
+                    }else if(args[i].Equals("--delime")){
+                        this.Delemeter=args[i+1][0];
                         args[i] = null;
                         args[i + 1] = null;
                     }
