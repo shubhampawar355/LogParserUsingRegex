@@ -29,8 +29,11 @@
                 File.AppendAllText (Destination, str);
         }
 
-        public string[] GetAllLogFiles () =>
-            Directory.GetFiles (this.Source, "*.log", SearchOption.AllDirectories);
+        public string[] GetAllLogFiles (){
+            if(Path.HasExtension(this.Source))
+                return new string[]{Source};
+           return Directory.GetFiles (this.Source, "*.log", SearchOption.AllDirectories);
+        }
 
         public int GetLastLogIdFromOldCSVFile () {
             int num = 0;
@@ -43,6 +46,8 @@
         }
 
         public bool IsSourceValid () {
+            if(Path.HasExtension(this.Source))
+                return true;
             return Directory.Exists (this.Source);
         }
 
