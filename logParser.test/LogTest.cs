@@ -25,7 +25,7 @@
             HashSet<string> userGivenLevels = new HashSet<string> ();
             userGivenLevels.Add ("info");
             userGivenLevels.Add ("Debug");
-            Log.SetLogFormat (userGivenLevels);
+            Log.SetLevelsToConsider (userGivenLevels);
             Assert.Equal<bool> (true, Log.IsLog ("03/22 08:51:01 INFO   :...locate_configFile: Specified configuration file: /u/user10/rsvpd1.conf"));
         }
 
@@ -34,7 +34,7 @@
             HashSet<string> userGivenLevels = new HashSet<string> ();
             userGivenLevels.Add ("info");
             userGivenLevels.Add ("Debug");
-            Log.SetLogFormat (userGivenLevels);
+            Log.SetLevelsToConsider (userGivenLevels);
             Assert.False (Log.IsLog ("99/99 08:51:01 INFO   :...locate_configFile: Specified configuration file: /u/user10/rsvpd1.conf"));
         }
 
@@ -43,7 +43,7 @@
             HashSet<string> userGivenLevels = new HashSet<string> ();
             userGivenLevels.Add ("info");
             userGivenLevels.Add ("Debug");
-            Log.SetLogFormat (userGivenLevels);
+            Log.SetLevelsToConsider (userGivenLevels);
             Assert.False (Log.IsLog ("03/23 08:51:01 shubham   :...locate_configFile: Specified configuration file: /u/user10/rsvpd1.conf"));
         }
 
@@ -52,7 +52,7 @@
             HashSet<string> userGivenLevels = new HashSet<string> ();
             userGivenLevels.Add ("info");
             userGivenLevels.Add ("Debug");
-            Log.SetLogFormat (userGivenLevels);
+            Log.SetLevelsToConsider (userGivenLevels);
             Assert.False (Log.IsLog ("03/23 13:13:13 INFO   :...locate_configFile: Specified configuration file: /u/user10/rsvpd1.conf"));
         }
 
@@ -61,7 +61,7 @@
             HashSet<string> userGivenLevels = new HashSet<string> ();
             userGivenLevels.Add ("info");
             userGivenLevels.Add ("debug");
-            Log.SetLogFormat (userGivenLevels);
+            Log.SetLevelsToConsider (userGivenLevels);
             Assert.True (new Regex (@"(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])\s(0[1-9]|1[012])[:](0[1-9]|[12345][0-9])[:](0[1-9]|[12345][0-9])\s(info|debug)", RegexOptions.IgnoreCase).ToString ().Equals (Log.LogFormat.ToString ()));
         }
     }

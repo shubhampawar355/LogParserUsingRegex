@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "logParser": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
