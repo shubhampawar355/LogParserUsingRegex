@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Xunit;
 
-namespace logarser
+namespace moqLogParser
 {
     public class LogTest
     {

@@ -5,7 +5,7 @@ using System.IO;
 using System.Reflection;
 using Xunit;
 
-namespace logarser
+namespace moqLogParser
 {
     public class FileWriterTest
     {

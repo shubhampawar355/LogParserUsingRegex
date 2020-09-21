@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace logarser
+namespace moqLogParser
 {
     public class LogParserTest
     {

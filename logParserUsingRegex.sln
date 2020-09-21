@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "logParser", "logParser\logP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "logParser.test", "logParser.test\logParser.test.csproj", "{F8687D44-ED76-4887-849D-225B75678D72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logParser.moq", "logarser\logParser.moq.csproj", "{B55DF44D-F335-4D0E-BA7A-1C0F349AF70E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "moqLogParser", "moqLogParser\moqLogParser.csproj", "{B55DF44D-F335-4D0E-BA7A-1C0F349AF70E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
