@@ -8,6 +8,5 @@ namespace logParser
     {
         void AddHeaderToDestination(char delim);
         void WriteToFile(List<string> lines);
-        void WriteToFile(string line);
     }
 }

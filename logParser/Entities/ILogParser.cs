@@ -8,5 +8,6 @@ namespace logParser
     {
         void Parse();
         void AddLogsIfFileContainsLogs(string file);
+        Log GetLogWithLogId(string formettedLine);
     }
 }

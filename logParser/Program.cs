@@ -7,14 +7,14 @@
 
     public class Program {
         public static void Main (string[] args) {
+            
+            var container = ContainerConfig.Configure(args);
 
-                var container = ContainerConfig.Configure(args);
-                using (var scope=container.BeginLifetimeScope())
-                {
-                    var app = scope.Resolve<IApplication>();
-                    app.Run();
-                }
-           
+            using (var scope=container.BeginLifetimeScope())
+            {
+                var app = scope.Resolve<IApplication>();
+                app.Run();
+            }
         }
     }
 }

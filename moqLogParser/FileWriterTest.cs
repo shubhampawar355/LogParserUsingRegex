@@ -10,32 +10,12 @@ namespace moqLogParser
     public class FileWriterTest
     {
         [Fact]
-        public void AddHeaderToDestination()
+        public void DependencyToFileWriterResovledCorrectly()
         {
             var mockInfo = new Mock<IUserInput>();
-            mockInfo.SetupGet(i => i.Destination).Returns(@"..\..\..\SampleInputOutput\Output\checkHeader.csv");
-
-            Action act = () =>
-              {
-                  var fileWriter = new FileWriter(mockInfo.Object);
-                  fileWriter.AddHeaderToDestination('|');
-                  Assert.True(File.ReadAllLines(@"..\..\..\SampleInputOutput\Output\checkHeader.csv")[0].Equals("| No | Level | Date | Time | Text |"));
-              };
-        }
-
-        [Fact]
-        public void TestAddHeaderToDestinationWithChangeInDelimeter()
-        {
-            var mockInfo = new Mock<IUserInput>();
-            mockInfo.SetupGet(i => i.Destination).Returns(@"..\..\..\SampleInputOutput\Output\checkHeader.csv");
-
-            Action act = () =>
-            {
-                var fileWriter = new FileWriter(mockInfo.Object);
-                fileWriter.AddHeaderToDestination('#');
-                Assert.True(File.ReadAllLines(@"..\..\..\SampleInputOutput\Output\checkHeader.csv")[0].Equals("| No | Level | Date | Time | Text |"));
-                File.Delete(@"..\..\..\SampleInputOutput\Output\checkHeader.csv");
-            };
+            mockInfo.SetupGet(i => i.Destination).Returns(@".\log.csv").Verifiable("Failed to use");
+            var fileWriter = new FileWriter(mockInfo.Object);
+            mockInfo.VerifyAll();
         }
     }
 }

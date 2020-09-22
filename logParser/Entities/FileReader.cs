@@ -8,12 +8,10 @@
     {
         private string _source;
         private string _destination;
-        private char _delime;
 
         public FileReader(IUserInput userInput) {
             _destination = userInput.Destination;
             _source = userInput.Source;
-            _delime = userInput.Delemeter;
         }
 
         public string[] GetAllLogFiles (){

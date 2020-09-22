@@ -7,7 +7,7 @@ namespace logParser
         DateTime DateTime { get; set; }
         string Info { get; set; }
         string Level { get; set; }
-        int LogId { get; set; }
+        int? LogId { get; set; }
 
         string ToString();
     }

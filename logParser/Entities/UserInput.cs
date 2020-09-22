@@ -12,14 +12,12 @@
             get { return _Source; }
             private set { _Source = value; }
         }
-
         private string _Destination;
         public string Destination
         {
             get { return _Destination; }
             private set { _Destination = value; }
         }
-
         private HashSet<string> _UserGivenLevels = new HashSet<string>();
         public HashSet<string> UserGivenLevels
         {
@@ -32,10 +30,8 @@
             get { return _Delimeter; }
             private set { _Delimeter = value; }
         }
-
-        private Regex levelRegex = new Regex(@"^(INFO|WARN|DEBUG|TRACE|ERROR|EVENT)$", RegexOptions.IgnoreCase);
-        private Regex flagRegex = new Regex(@"^(--log-dir|--csv|--delime)$", RegexOptions.IgnoreCase);
-
+        private Regex _LevelRegex = new Regex(@"^(INFO|WARN|DEBUG|TRACE|ERROR|EVENT)$", RegexOptions.IgnoreCase);
+        private Regex _FlagRegex = new Regex(@"^(--log-dir|--csv|--delime)$", RegexOptions.IgnoreCase);
         public UserInput(string[] args)
         {
             for (int i = 0; i < args.Length; i++)
@@ -44,12 +40,12 @@
                 {
                     try
                     {
-                        if (levelRegex.IsMatch(args[i]))
+                        if (_LevelRegex.IsMatch(args[i]))
                         {
                             this.UserGivenLevels.Add(args[i]);
                             args[i] = null;
                         }
-                        else if (flagRegex.IsMatch(args[i]))
+                        else if (_FlagRegex.IsMatch(args[i]))
                         {
                             if (args[i].Equals("--log-dir", StringComparison.OrdinalIgnoreCase))
                                 this.Source = args[i + 1];
@@ -80,11 +76,10 @@
                     }
                 }
             }
-            this.IfUserGivesNolabels(args);
+            this.VerifyWrongInput(args);
             this.AssignAllLevelsIfNotGiven();
         }
-
-        private void IfUserGivesNolabels(string[] args)
+        private void VerifyWrongInput(string[] args)
         {
             foreach (var item in args)
             {
@@ -96,7 +91,6 @@
                 }
             }
         }
-
         private void AssignAllLevelsIfNotGiven()
         {
             if (this.UserGivenLevels.Count == 0)

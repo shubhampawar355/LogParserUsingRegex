@@ -22,6 +22,7 @@ namespace logParser
             this._fileWriter = fileWriter;
             this._lastLogIdFromOldCSVFile = fileReader.GetLastLogIdFromOldCSVFile();
         }
+
         public void Parse()
         {
             _fileWriter.AddHeaderToDestination(_userInput.Delemeter);
@@ -47,26 +48,26 @@ namespace logParser
         {
             List<string> lines = _fileReader.ReadAllLines(file);
             List<string> logsToWrite = new List<string>();
-            string tabVal = new string(' ', 1);
             foreach (string line in lines)
             {
-                string formattedLine = line.Replace("\t", tabVal);
+                string formattedLine = line.Replace("\t", new string(' ', 1));
                 if (!Log.IsLog(formattedLine))
                 {
                     _skippedLinesCount++;
                     continue;
                 }
-                string[] lineSplit = formattedLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                logsToWrite.Add(new Log(++_lastLogIdFromOldCSVFile,
-                    Regex.Match(formattedLine, "(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])").ToString(),
-                    Regex.Match(formattedLine, "(0[1-9]|1[012])[:](0[1-9]|[12345][0-9])[:](0[1-9]|[12345][0-9])").ToString(),
-                    Regex.Match(formattedLine, "(INFO|WARN|DEBUG|TRACE|ERROR|EVENT)").ToString(),
-                    string.Join(" ", Enumerable.Skip<string>(lineSplit, 3))).ToString());
+                string csvFileLog = GetLogWithLogId(formattedLine).ToString();
+                logsToWrite.Add(csvFileLog);
             }
             _fileWriter.WriteToFile(logsToWrite);
         }
-
-
+      
+        public Log GetLogWithLogId(string formattedLine)
+        {
+            Log log = Log.GetLog(formattedLine);
+            log.LogId = ++_lastLogIdFromOldCSVFile;
+            return log;
+        }
         public static void PrintHelp()
         {
             Console.WriteLine("\nUse case 1) logParser --log-dir <dir> --log-level <level> --csv <out>" +

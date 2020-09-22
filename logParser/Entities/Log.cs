@@ -2,10 +2,11 @@
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System;
+    using System.Linq;
+
     public class Log : ILog
     {
-
-        public int LogId { get; set; }
+        public int? LogId { get; set; } = null;
         public DateTime DateTime { get; set; }
         public string Level { get; set; }
         public string Info { get; set; }
@@ -26,7 +27,7 @@
             private set { _LogFormat = value; }
         }
 
-        public Log(int logId, string dateStr, string timeStr, string level, string info)
+        public Log(int? logId, string dateStr, string timeStr, string level, string info)
         {
             this.LogId = logId;
             this.Level = level;
@@ -53,6 +54,16 @@
             LogFormat = new Regex(str.Remove(str.Length - 1, 1) + ")", RegexOptions.IgnoreCase);
         }
 
+        public static Log GetLog(string formattedLogLine)
+        {
+            string[] lineSplit = formattedLogLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            Log log = new Log(null,
+                    Regex.Match(formattedLogLine, "(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])").ToString(),
+                    Regex.Match(formattedLogLine, "(0[1-9]|1[012])[:](0[1-9]|[12345][0-9])[:](0[1-9]|[12345][0-9])").ToString(),
+                    Regex.Match(formattedLogLine, "(INFO|WARN|DEBUG|TRACE|ERROR|EVENT)").ToString(),
+                    string.Join(" ", Enumerable.Skip<string>(lineSplit, 3)));
+            return log;
+        }
         public override string ToString()
         {
             string str = "" + Delimeter + LogId + Delimeter + Level.ToString() + Delimeter + DateTime.ToString("dd MMM yyy") + Delimeter + DateTime.ToShortTimeString() + Delimeter + Info + Delimeter;

@@ -6,17 +6,15 @@ namespace logParser
 {
     public class Application : IApplication
     {
-        private readonly ILogParser logParser;
-        private readonly IUserInput userInput;
+        private readonly ILogParser _logParser;
 
-        public Application(IUserInput userInput, ILogParser logParser)
+        public Application(ILogParser logParser)
         {
-            this.userInput = userInput;
-            this.logParser = logParser;
+            this._logParser = logParser;
         }
         public void Run()
         {
-            logParser.Parse();
+            _logParser.Parse();
         }
 
     }

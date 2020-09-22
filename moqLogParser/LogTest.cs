@@ -19,8 +19,8 @@ namespace moqLogParser
         public void TestDelimCantChangeIfAssignedToDefaultCharTypeValue()
         {
             Log.Delimeter = '\0';
-            Assert.Equal(",1,INFO,22 Mar " + ((int)DateTime.Now.Year).ToString() + ",08:51 AM,this is for testing something else,", new Log(1, "03/22", "08:51:02", "INFO", "this is for testing something else").ToString());
-            // Assert.True(("|1|INFO|22 Mar " + ((int) DateTime.Now.Year).ToString() + "|08:51 AM|this is for testing|").Equals(new Log(1, "03/22", "08:51:02", "INFO", "this is for testing").ToString()));
+           // Assert.Equal(",1,INFO,22 Mar " + ((int)DateTime.Now.Year).ToString() + ",08:51 AM,this is for testing something else,", new Log(1, "03/22", "08:51:02", "INFO", "this is for testing something else").ToString());
+            Assert.True(("|1|INFO|22 Mar " + ((int) DateTime.Now.Year).ToString() + "|08:51 AM|this is for testing|").Equals(new Log(1, "03/22", "08:51:02", "INFO", "this is for testing").ToString()));
         }
 
         [Fact]
